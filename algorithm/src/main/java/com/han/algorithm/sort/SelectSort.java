@@ -5,12 +5,11 @@ import com.han.algorithm.utils.Utils;
 import java.util.Arrays;
 
 /**
- * 冒泡排序 每轮最小值会浮到最前面
- * 冒泡、选择、插入是非常相识的3中排序
+ * 选择排序每轮选一个最小值放到本轮最前面
  *
  * @author han
  */
-public class BubbleSort {
+public class SelectSort {
 
     public static void main(String[] args) {
         int[] array = Utils.generateRandowArray(50, 1, 50);
@@ -19,13 +18,15 @@ public class BubbleSort {
     }
 
     private static void sort(int[] array) {
-
+        // 每轮选出最小的
         for (int i = 0; i < array.length; i++) {
+            int temp = i;
             for (int j = i + 1; j < array.length; j++) {
-                if (array[i] > array[j]) {
-                    Utils.swap(array, i, j);
+                if (array[j] < array[temp]) {
+                    temp = j;
                 }
             }
+            Utils.swap(array, i, temp);
         }
     }
 }
