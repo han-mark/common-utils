@@ -1,5 +1,7 @@
 package com.han.algorithm.sort;
 
+import com.han.algorithm.utils.Utils;
+
 import java.util.Arrays;
 
 /**
@@ -15,7 +17,6 @@ public class QuickSort {
     public static void main(String[] args) {
         int array[] = {4,2,5,6,3,1,8};
         sort(array, 0, array.length - 1);
-        //System.out.println(Arrays.toString(array));
     }
 
     private static void sort(int[] array, int begin, int end) {
@@ -50,10 +51,10 @@ public class QuickSort {
                 begin++;
             }
             if (begin < end) {
-                swap(array, begin, end);
+                Utils.swap(array, begin, end);
             }
         }
-        swap(array, left, end);
+        Utils.swap(array, left, end);
         return end;
     }
 
@@ -76,7 +77,7 @@ public class QuickSort {
                 end--;
             }
             if (begin < end) {
-                swap(array, begin, end);
+                Utils.swap(array, begin, end);
             }
         }
         // 从小到大排序， 先左后右 需对分界值做判断, 会出现分界值大于标准值的情况
@@ -84,7 +85,7 @@ public class QuickSort {
         if (array[left] < array[end]) {
             end--;
         }
-        swap(array, left, end);
+        Utils.swap(array, left, end);
         return end;
     }
 
@@ -107,10 +108,10 @@ public class QuickSort {
                 end--;
             }
             if (begin < end) {
-                swap(array, begin, end);
+                Utils.swap(array, begin, end);
             }
         }
-        swap(array, left, end);
+        Utils.swap(array, left, end);
         return end;
     }
 
@@ -133,14 +134,14 @@ public class QuickSort {
                 begin++;
             }
             if (begin < end) {
-                swap(array, begin, end);
+                Utils.swap(array, begin, end);
             }
         }
         // 从小到大排序， 先左后右 需对分界值做判断, 会出现分界值小于标准值的情况
         if (array[left] > array[end]) {
             end++;
         }
-        swap(array, left, end);
+        Utils.swap(array, left, end);
         return end;
     }
 
@@ -155,11 +156,5 @@ public class QuickSort {
     private static int desc(int[] array, int begin, int end) {
         // TODO
         return end;
-    }
-
-    private static void swap(int[] array, int i, int j) {
-        int origin = array[i];
-        array[i] = array[j];
-        array[j] = origin;
     }
 }
