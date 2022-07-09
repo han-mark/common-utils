@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 /**
  * 快速排序
- * 每轮从左或者右选一个基准值，从俩边开始将数组分成俩部分，让没边都是</> 基准值
+ * 每轮从左或者右选一个基准值，将数组分成俩部分，让没边都是</> 基准值
  * 最后将基准值与分界处的值交换
  * 每轮剔除分界值
  *
@@ -15,21 +15,23 @@ import java.util.Arrays;
 public class QuickSort {
 
     public static void main(String[] args) {
-        int array[] = {4,2,5,6,3,1,8};
+        int[] array = Utils.generateRandowArray(50, 1, 50);
         sort(array, 0, array.length - 1);
+        System.out.println(Arrays.toString(array));
     }
 
     private static void sort(int[] array, int begin, int end) {
         if ( begin >= end) {
             return ;
         }
-        int split = rightFirstStandardRight(array, begin, end);
+        int split = sortFormOne(array, begin, end);
 
         // 每次把标准值放到分割位上，下次循环排除分割位
         sort(array, begin, split - 1);
         sort(array, split + 1, end);
-        System.out.println(Arrays.toString(array));
     }
+
+    // 从俩边开始
 
     /**
      * 标准值放左边， 先从右边开始
@@ -145,16 +147,18 @@ public class QuickSort {
         return end;
     }
 
-    /**
-     * 逆序
-     *
-     * @param array
-     * @param begin
-     * @param end
-     * @return
-     */
-    private static int desc(int[] array, int begin, int end) {
-        // TODO
-        return end;
+    // 从单边left开始
+
+    private static int sortFormOne(int[] array, int left, int right) {
+        // 记录大于基准值的位置，便于交换
+        int biggerPoint = left + 1;
+        for (int i = biggerPoint; i <= right; i++) {
+            if (array[i] < array[left]) {
+                Utils.swap(array, biggerPoint, i);
+                biggerPoint++;
+            }
+        }
+        Utils.swap(array, left, biggerPoint - 1);
+        return biggerPoint - 1;
     }
 }
