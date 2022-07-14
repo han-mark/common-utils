@@ -90,7 +90,7 @@ public class BST<Key extends Comparable<Key>, Value> {
 
     private void preOrder(List<Node> list, Node node) {
         if (node != null) {
-            list.add(node);
+            list.add(new Node(node));
             preOrder(list, node.left);
             preOrder(list, node.right);
         }
@@ -105,7 +105,7 @@ public class BST<Key extends Comparable<Key>, Value> {
     private void inOrder(List<Node> list, Node node) {
         if (node != null) {
             inOrder(list, node.left);
-            list.add(node);
+            list.add(new Node(node));
             inOrder(list, node.right);
         }
     }
@@ -120,7 +120,7 @@ public class BST<Key extends Comparable<Key>, Value> {
         if (node != null) {
             postOrder(list, node.left);
             postOrder(list, node.right);
-            list.add(node);
+            list.add(new Node(node));
         }
     }
 
@@ -139,7 +139,7 @@ public class BST<Key extends Comparable<Key>, Value> {
             if (node.right != null) {
                 queue.add(node.right);
             }
-            list.add(node);
+            list.add(new Node(node));
         }
         return list;
     }
